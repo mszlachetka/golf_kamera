@@ -32,7 +32,7 @@
 
 #include "MatToQImage.h"
 // Qt
-#include <QDebug>
+
 
 QImage MatToQImage(const Mat& mat)
 {
@@ -61,7 +61,7 @@ QImage MatToQImage(const Mat& mat)
     }
     else
     {
-        qDebug() << "ERROR: Mat could not be converted to QImage.";
+
         return QImage();
     }
 }

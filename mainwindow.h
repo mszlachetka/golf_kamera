@@ -13,6 +13,10 @@
 #include <QtCore/qmath.h>
 
 #include <myrect.h>
+#include <mycircle.h>
+
+#include <QSharedMemory>
+#include <QBuffer>
 
 
 
@@ -33,14 +37,18 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+
     void get_cv_frame();
     void MyLine( Mat img, Point start, Point end,int blue,int green,int red );
      void MyEllipse( Mat img, double angle,int radius,Point center,int blue, int green, int red  );
-     void setLabel(Mat& im, const string label, Point &pt);
+
+      void setLabel(Mat& im, const string label, Point &pt);
       bool addCentralPoint_Circle(vector<Point>& contour);
       bool addCentralPoint_Rect(vector<Point>& contour);
 
+
+      void Update_shareMemory(QSharedMemory *sharedMemory);
+      void Load_from_sharedMemory(QSharedMemory *sharedMemory);
 
 
 
@@ -50,15 +58,29 @@ private slots:
 
       void on_lineEdit_returnPressed();
 
+
+
 private:
     Ui::MainWindow *ui;
 
      QTimer *mTimer=new QTimer(this);
-    CvCapture *capture= cvCaptureFromCAM(CV_CAP_ANY);
+    CvCapture *capture=cvCaptureFromCAM(CV_CAP_ANY);
+    int iteration=0;
+
+    int  displacement_y=480;
+
+
+
     Mat frame, binary;
-     QVector<Point> central_Points_Circle;
-     QVector <MyRect *> central_Points_Rect;
+
+
+
      QVector<Point> central_Points_Triangle;
+
+     int position=0;
+
+QSharedMemory sharedMemory_GamePad;
+QSharedMemory sharedMemory_Camera;
 
 
 
@@ -67,9 +89,32 @@ private:
        bool is_lower_side_of_marker=true;
        bool is_higher_side_of_marker=true;
 
-       Point center_of_marker;
-       QVector <Point> lower_side_of_marker;
-       QVector <Point> higher_side_of_marker;
+       double robot_x=9999,robot_y=9999,robot_a=9999;
+       double ball_x=9999,ball_y=9999;
+       double map_x=9999,map_y=9999,map_a=9999,map_distance=9999;
+       double hole_x=9999,hole_y=9999;
+
+
+
+       QVector <MyCircle *> map_markers;
+       double map_angle=0;
+        QVector <MyCircle *> central_Points_Circle;
+
+       QVector <MyCircle *> ball_marker;
+
+       QVector <MyRect *> hole_marker;
+
+
+         QVector <MyRect *> robot_marker;
+         double robot_angle=0;
+       QVector <MyRect *> central_Points_Rect;
+
+
+       double gamepad_robot_x=100;
+       double gamepad_robot_y=100;
+       double gamepad_robot_theta=0;
+
+
 
        Point temp_Point;
 

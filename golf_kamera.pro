@@ -15,7 +15,8 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     MatToQImage.cpp \
-    myrect.cpp
+    myrect.cpp \
+    mycircle.cpp
 
 INCLUDEPATH +=C:\opencv\release\install\include
 LIBS += "C:\\\opencv\release\lib\libopencv_gpu2410d.dll.a"
@@ -92,6 +93,7 @@ LIBS += "C:\\opencv\release\lib\libopencv_gpu_pch_dephelpd.a"
 
 HEADERS  += mainwindow.h \
     MatToQImage.h \
-    myrect.h
+    myrect.h \
+    mycircle.h
 
 FORMS    += mainwindow.ui

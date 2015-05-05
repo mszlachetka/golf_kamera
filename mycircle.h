@@ -1,5 +1,5 @@
-#ifndef MYRECT_H
-#define MYRECT_H
+#ifndef MYCIRCLE_H
+#define MYCIRCLE_H
 
 #include <QObject>
 #include <opencv2/objdetect/objdetect.hpp>
@@ -12,29 +12,25 @@
 using namespace cv;
 using namespace std;
 
-class MyCircle;
+class MyRect;
 
-class MyRect
+
+class MyCircle
 {
 public:
-    MyRect();
-    ~MyRect();
-
+    MyCircle();
+    ~MyCircle();
 
     Point centrum;
-    double a_lenght=0;
-    double b_lenght=0;
+    double r=0;
 
-     vector <Point>  Mcontour;
+    vector <Point>  Mcontour;
 
-      QVector <MyCircle *> circles_inside;
+    QVector <MyRect *> rects_inside;
 
-      bool used=false;
-
-
-
+    bool used=false;
 
 
 };
 
-#endif // MYRECT_H
+#endif // MYCIRCLE_H

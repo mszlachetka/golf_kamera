@@ -39,6 +39,9 @@
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
 
+#include <mycircle.h>
+#include <myrect.h>
+
 using namespace cv;
 
 QImage MatToQImage(const Mat&);
